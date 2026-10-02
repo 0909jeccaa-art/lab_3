@@ -4,32 +4,34 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Введiть цiле число для перевiрки на число Армстронга:");
-        // Отримання значення з клавіатури
-        int originalNumber = int.Parse(Console.ReadLine());
+        // Ініціалізація одновимірного масиву при створенні
+        int[] array = { -5, 0, 10, -3, 8, 0, 12, -1, 4 };
 
-        int number = originalNumber;
-        int sum = 0;
+        int positiveCount = 0; // Додатні
+        int negativeCount = 0; // Від'ємні
+        int zeroCount = 0;     // Нульові
 
-        // Підрахунок кількості цифр у числі
-        int digitsCount = originalNumber.ToString().Length;
-
-        // Цикл для обчислення суми цифр у степені digitsCount
-        while (number > 0)
+        // Перебір елементів масиву
+        foreach (int element in array)
         {
-            int digit = number % 10;
-            sum += (int)Math.Pow(digit, digitsCount);
-            number /= 10;
+            if (element > 0)
+            {
+                positiveCount++;
+            }
+            else if (element < 0)
+            {
+                negativeCount++;
+            }
+            else
+            {
+                zeroCount++;
+            }
         }
 
-        // Умовний оператор для перевірки результату
-        if (sum == originalNumber)
-        {
-            Console.WriteLine($"{originalNumber} є числом Армстронга.");
-        }
-        else
-        {
-            Console.WriteLine($"{originalNumber} не є числом Армстронга.");
-        }
+        // Виведення результатів у консоль
+        Console.WriteLine($"Елементи масиву: {string.Join(", ", array)}");
+        Console.WriteLine($"Кiлькiсть додатних елементiв: {positiveCount}");
+        Console.WriteLine($"Кiлькiсть вiд'ємних елементiв: {negativeCount}");
+        Console.WriteLine($"Кiлькiсть нульових елементiв: {zeroCount}");
     }
 }
